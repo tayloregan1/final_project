@@ -14,13 +14,19 @@ sharkattack_counts = load_data('sharkattack_counts.csv')
 
 # def bar_plot(df, column1, column2): # Set x equal to place names
 x = sharkattack_counts['Year']
-bar_width = 0.75
+bar_width = .8
 fig, ax = plt.subplots()
 # x-axis is place names, y-axis is attendance
 ax.bar(x, sharkattack_counts['Amount of Shark Attacks'], width=bar_width, color='pink', edgecolor='blue')
 # Set x-ticks to be place names
 ax.set_xticks(x)
-ax.set_xticks(sharkattack_counts['Year'])
+
+# ax.set_xticks(sharkattack_counts['Year'])
+years_for_xticks = []
+for x in range(1961, 2022, 5):
+    while x < 2018:
+        years_for_xticks.append(x)
+ax.set_xticks(years_for_xticks)
 plt.xticks(rotation=90)
 # Set y-ticks to be more uniform plt.yticks(np.arange(1000000, 8500000, step=1000000)) # Add a grid
 ax.grid(axis='y', linestyle='--')
@@ -57,6 +63,15 @@ fatal_choice_list = list(fatal_choice)
 filtered_df = filtered_df[shark['Fatal==True'].isin(fatal_choice_list)]
 
 st.dataframe(filtered_df)
+# printing the list using loop
+
+st.write(f'Percent of shark attacks in these countries:')
+for x in countries_choice_list:
+    st.write(x, sep = ", ") 
+len(filtered_df)/len(shark)*100
+
+st.write('Percent of shark attacks that are fatal with parameters selected')
+len(filtered_df[filtered_df['Fatal==True'] == 1])/len(filtered_df)*100
 
 st.header('Percent of Shark Attacks by Type of Attack')
 unprov = len(shark[shark['Type'] == 'Unprovoked'])/len(shark)
