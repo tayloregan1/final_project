@@ -188,4 +188,6 @@ st.markdown('Since the p-value is less than alpha, we reject the null hypothesis
             'This means there is a significant difference between low and high sea levels in terms '
             'of the number of shark attacks that occur!')
 
-st.header('Thanks for reading :) come back soon')
+st.write('Thanks for reading :) come back soon')
+
+st.write('View our repository here, where our report is also linked:  https://github.com/tayloregan1/final_project')
